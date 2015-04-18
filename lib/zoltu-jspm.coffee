@@ -52,7 +52,7 @@ module.exports = ZoltuJspm =
 			@view.focus()
 
 	init: ->
-		@executeJspm [ 'init' ]
+		@executeJspm [ 'init', '--yes' ]
 
 	confirm: (event) ->
 		@panel.hide()
