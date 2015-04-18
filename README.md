@@ -2,6 +2,8 @@
 
 This package will add commands for installing and uninstalling JSPM packages.
 
+![zoltu-jspm-usage](https://cloud.githubusercontent.com/assets/886059/7216582/1c40943e-e5b9-11e4-8006-d14300ba8de5.gif)
+
 Known issues:
  * JSPM Init command doesn't work yet.
   * This is because I don't know how to do a headless init with JSPM.
