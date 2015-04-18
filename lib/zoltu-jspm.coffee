@@ -18,11 +18,19 @@ module.exports = ZoltuJspm =
 		@subscriptions = new CompositeDisposable
 
 		# Register commands
-		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-install': => @toggleInstall()
-		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-uninstall': => @toggleUninstall()
-		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:init': => @init()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-install': => @jspmProjectCheck => @toggleInstall()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-uninstall': => @jspmProjectCheck => @toggleUninstall()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:init': => @jspmProjectCheck => @init()
 		@subscriptions.add atom.commands.add 'zoltu-jspm-text-panel atom-text-editor', 'core:confirm': (event) => @confirm(event)
 		@subscriptions.add atom.commands.add 'zoltu-jspm-text-panel atom-text-editor', 'core:cancel': (event) => @close(event)
+
+	jspmProjectCheck: (method) ->
+		if !atom.project.getPath()
+			atom.notifications.addWarning('JSPM', dismissable: true, detail: 'You must have a project open to use JSPM.')
+		else if !fs.existsSync(@pathToJspm())
+			atom.notifications.addWarning('JSPM', dismissable: true, detail: 'You must install the JSPM node package to this project before using JSPM.  npm install jspm')
+		else
+			method()
 
 	deactivate: ->
 		@panel.destroy()
