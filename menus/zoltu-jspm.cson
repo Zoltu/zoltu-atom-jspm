@@ -1,0 +1,23 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'menu': [
+	{
+		'label': 'Packages'
+		'submenu': [
+			'label': 'JSPM'
+			'submenu': [
+				{
+					'label': 'Install'
+					'command': 'zoltu-jspm:toggle-install'
+				},
+				{
+					'label': 'Uninstall'
+					'command': 'zoltu-jspm:toggle-uninstall'
+				},
+				{
+					'label': 'Init'
+					'command': 'zoltu-jspm:init'
+				}
+			]
+		]
+	}
+]

@@ -1,0 +1,19 @@
+{
+	"name": "zoltu-jspm",
+	"main": "./lib/zoltu-jspm",
+	"version": "0.0.0",
+	"description": "Adds commands for JSPM",
+	"activationCommands": {
+		"atom-workspace": [
+			"zoltu-jspm:init",
+			"zoltu-jspm:toggle-install",
+			"zoltu-jspm:toggle-uninstall"
+		]
+	},
+	"repository": "https://github.com/Zoltu/zoltu-jspm-atom",
+	"license": "CC0",
+	"engines": {
+		"atom": ">=0.174.0 <2.0.0"
+	},
+	"dependencies": {}
+}
