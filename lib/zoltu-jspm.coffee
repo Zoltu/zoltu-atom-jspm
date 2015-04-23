@@ -66,7 +66,10 @@ module.exports = ZoltuJspm =
 		@panel.hide()
 
 	install: (packageName) ->
-		@executeJspm [ 'install', packageName, '--yes' ]
+		if packageName == ''
+			@executeJspm [ 'install', '--yes' ]
+		else
+			@executeJspm [ 'install', '--yes', packageName ]
 
 	uninstall: (packageName) ->
 		@executeJspm [ 'uninstall', packageName ]
