@@ -1,7 +1,7 @@
 {
   "name": "zoltu-jspm",
   "main": "./lib/zoltu-jspm",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Adds commands for JSPM",
   "activationCommands": {
     "atom-workspace": [

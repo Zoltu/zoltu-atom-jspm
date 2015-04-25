@@ -82,7 +82,12 @@ module.exports = ZoltuJspm =
 		command = @pathToJspm()
 		options =
 			cwd: atom.project.getPath()
-			env: { ATOM_SHELL_INTERNAL_RUN_AS_NODE: '1', PATH: @pathToGitDirectory() }
+			env:
+				ATOM_SHELL_INTERNAL_RUN_AS_NODE: '1'
+				LOCALAPPDATA: process.env.LOCALAPPDATA
+				HOME: process.env.HOME
+				HOMEPATH: process.env.HOMEPATH
+				PATH: process.env + ";" + @pathToGitDirectory()
 		@process = new BufferedNodeProcess({command, args, options, stdout: @jspmLogInfo, stderr: @jspmLogError, exit: @jspmExit})
 
 	pathToJspm: ->
