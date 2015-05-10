@@ -20,6 +20,7 @@ module.exports = ZoltuJspm =
 		# Register commands
 		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-install': => @jspmProjectCheck => @toggleInstall()
 		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:toggle-uninstall': => @jspmProjectCheck => @toggleUninstall()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:update': => @jspmProjectCheck => @update()
 		@subscriptions.add atom.commands.add 'atom-workspace', 'zoltu-jspm:init': => @jspmProjectCheck => @init()
 		@subscriptions.add atom.commands.add 'zoltu-jspm-text-panel atom-text-editor', 'core:confirm': (event) => @confirm(event)
 		@subscriptions.add atom.commands.add 'zoltu-jspm-text-panel atom-text-editor', 'core:cancel': (event) => @close(event)
@@ -53,6 +54,9 @@ module.exports = ZoltuJspm =
 
 	init: ->
 		@executeJspm [ 'init', '--yes' ]
+
+	update: ->
+		@executeJspm [ 'update', '--yes' ]
 
 	confirm: (event) ->
 		@panel.hide()
