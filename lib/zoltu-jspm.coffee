@@ -1,4 +1,5 @@
 { CompositeDisposable, BufferedNodeProcess } = require 'atom'
+fs = require 'fs'
 path = require 'path'
 ZoltuJspmTextView = require './zoltu-jspm-text-view'
 
