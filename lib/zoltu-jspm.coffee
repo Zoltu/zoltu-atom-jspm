@@ -27,7 +27,7 @@ module.exports = ZoltuJspm =
 		@subscriptions.add atom.commands.add 'zoltu-jspm-text-panel atom-text-editor', 'core:cancel': (event) => @close(event)
 
 	jspmProjectCheck: (method) ->
-		if !atom.project.getPath()
+		if !atom.project.getPaths() || !atom.project.getPaths().length
 			atom.notifications.addWarning('JSPM', dismissable: true, detail: 'You must have a project open to use JSPM.')
 		else if !fs.existsSync(@pathToJspm())
 			atom.notifications.addWarning('JSPM', dismissable: true, detail: 'You must install the JSPM node package to this project before using JSPM.  npm install jspm')
@@ -86,7 +86,7 @@ module.exports = ZoltuJspm =
 
 		command = @pathToJspm()
 		options =
-			cwd: atom.project.getPath()
+			cwd: atom.project.getPaths()[0]
 			env:
 				ATOM_SHELL_INTERNAL_RUN_AS_NODE: '1'
 				LOCALAPPDATA: process.env.LOCALAPPDATA
@@ -96,7 +96,7 @@ module.exports = ZoltuJspm =
 		@process = new BufferedNodeProcess({command, args, options, stdout: @jspmLogInfo, stderr: @jspmLogError, exit: @jspmExit})
 
 	pathToJspm: ->
-		return path.join(atom.project.getPath(), 'node_modules', 'jspm', 'jspm.js')
+		return path.join(atom.project.getPaths()[0], 'node_modules', 'jspm', 'jspm.js')
 
 	pathToGitDirectory: ->
 		gitDirectory = "C:\\Program Files (x86)\\Git\\bin\\"

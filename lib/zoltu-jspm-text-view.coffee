@@ -1,5 +1,3 @@
-{ $ } = require('atom')
-
 Template = """
 <h3 id="zoltu-jspm-type-label"></h3>
 <atom-text-editor id="zoltu-jspm-input-area" mini focusOnAttach></atom-text-editor>
@@ -18,16 +16,16 @@ class ZoltuJspmTextView
 		@element
 
 	getInputArea: ->
-		$('#zoltu-jspm-input-area').first().element
+		return document.getElementById('zoltu-jspm-input-area');
 
 	getModel: ->
 		@getInputArea().getModel()
 
 	focus: ->
-		typeLabel = $('#zoltu-jspm-type-label').first()
+		typeLabel = document.getElementById('zoltu-jspm-type-label')
 		switch @getModel().type
-			when "install" then typeLabel.html('Install')
-			when "uninstall" then typeLabel.html('Uninstall')
+			when "install" then typeLabel.innerText = 'Install'
+			when "uninstall" then typeLabel.innerText = 'Uninstall'
 		@element.focus()
 		@getInputArea().focus()
 		@getModel().setText('')
